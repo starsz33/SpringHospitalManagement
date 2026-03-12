@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 @Repository
 public class AppointmentDAO {
     @Autowired
@@ -17,7 +18,7 @@ public class AppointmentDAO {
         PreparedStatement stmt = connection.prepareStatement(sql);
         stmt.setInt(1, appointment.getDoctorId());
         stmt.setInt(2, appointment.getPatientId());
-        stmt.setString(3, appointment.getAppointmentDate());
+        stmt.setTimestamp(3, Timestamp.valueOf(appointment.getAppointmentDate()));
         stmt.setString(4, appointment.getStatus());
         stmt.executeUpdate();
     }
